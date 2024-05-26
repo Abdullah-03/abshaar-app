@@ -1,20 +1,37 @@
-import { ExternalLink } from '@tamagui/lucide-icons'
 import {
   Anchor,
   Button,
   H2,
+  H3,
   Paragraph,
   Progress,
   XStack,
   YStack,
 } from 'tamagui'
-import { ToastViewport } from '@tamagui/toast'
-import { CurrentToast, ToastControl } from 'app/CurrentToast'
 import WaterContainer from 'components/waterContainer'
-import { useState } from 'react'
+import LogWater from 'components/logWater'
+import { useEffect, useState } from 'react'
 
 export default function TabOneScreen() {
   const [water, setWater] = useState(0)
+  const [goal, setGoal] = useState(2000)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          'https://melted-kevina-darana-7386c30a.koyeb.app/goal'
+        )
+        const data = await response.json()
+        setGoal(data.goal)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
   return (
     <YStack
       fullscreen
@@ -28,23 +45,12 @@ export default function TabOneScreen() {
 
       <WaterContainer
         value={water}
-        maxCapacity={100}
+        maxCapacity={goal}
       />
 
-      <Button
-        onPress={() => {
-          setWater(water + 30)
-        }}
-      >
-        Add Water
-      </Button>
-
-      <ToastControl />
-      <CurrentToast />
-      <ToastViewport
-        top="$5"
-        left="$5"
-        right="$5"
+      <LogWater
+        water={water}
+        setWater={setWater}
       />
     </YStack>
   )

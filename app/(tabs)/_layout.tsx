@@ -1,22 +1,29 @@
 import { Link, Tabs } from 'expo-router'
 import { Button } from 'tamagui'
-import { Atom, AudioWaveform } from '@tamagui/lucide-icons'
+import { GlassWater, Target } from '@tamagui/lucide-icons'
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: 'red',
+        tabBarActiveTintColor: 'blue',
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <Atom color={color} />,
+          title: 'Log',
+          tabBarIcon: ({ color }) => <GlassWater color={color} />,
           headerRight: () => (
-            <Link href="/modal" asChild>
-              <Button mr="$4" bg="$purple10" color="$white">
+            <Link
+              href="/modal"
+              asChild
+            >
+              <Button
+                mr="$4"
+                bg="$purple10"
+                color="$white"
+              >
                 Hello!
               </Button>
             </Link>
@@ -26,8 +33,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <AudioWaveform color={color} />,
+          title: 'Target',
+          tabBarIcon: ({ color }) => <Target color={color} />,
         }}
       />
     </Tabs>

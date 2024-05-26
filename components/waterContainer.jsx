@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { View, StyleSheet, Animated } from 'react-native'
-import { XStack } from 'tamagui'
+import { Text } from 'tamagui'
 
 const WaterContainer = ({ value, maxCapacity }) => {
   const fillPercentage = (value / maxCapacity) * 100
@@ -8,7 +8,7 @@ const WaterContainer = ({ value, maxCapacity }) => {
 
   useEffect(() => {
     Animated.spring(animatedHeight, {
-      toValue: fillPercentage,
+      toValue: fillPercentage*2,
       useNativeDriver: false,
     }).start()
   }, [fillPercentage])
@@ -16,7 +16,10 @@ const WaterContainer = ({ value, maxCapacity }) => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.water, { height: animatedHeight }]}>
-        <XStack style={{ flex: 1 }} />
+        
+      <Text position='absolute' left={10} bottom={90} color={'$color1'}>
+          {value} / {maxCapacity}
+        </Text>
       </Animated.View>
     </View>
   )
@@ -38,3 +41,4 @@ const styles = StyleSheet.create({
 })
 
 export default WaterContainer
+ 
