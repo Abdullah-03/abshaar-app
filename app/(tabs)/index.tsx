@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react'
 
 export default function TabOneScreen() {
   const [water, setWater] = useState(0)
-  const [goal, setGoal] = useState(2000)
+  const [goal, setGoal] = useState(1)
 
   useEffect(() => {
     const fetchData = async () => {

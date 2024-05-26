@@ -12,6 +12,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
+          unmountOnBlur: true,
           title: 'Log',
           tabBarIcon: ({ color }) => <GlassWater color={color} />,
           headerRight: () => (
