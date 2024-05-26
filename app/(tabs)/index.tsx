@@ -1,10 +1,20 @@
 import { ExternalLink } from '@tamagui/lucide-icons'
-import { Anchor, H2, Paragraph, Progress, XStack, YStack } from 'tamagui'
+import {
+  Anchor,
+  Button,
+  H2,
+  Paragraph,
+  Progress,
+  XStack,
+  YStack,
+} from 'tamagui'
 import { ToastViewport } from '@tamagui/toast'
 import { CurrentToast, ToastControl } from 'app/CurrentToast'
 import WaterContainer from 'components/waterContainer'
+import { useState } from 'react'
 
 export default function TabOneScreen() {
+  const [water, setWater] = useState(0)
   return (
     <YStack
       fullscreen
@@ -14,12 +24,20 @@ export default function TabOneScreen() {
       mt="$5"
       bg="$alt1"
     >
-      <H2 col="$color1">Abshaar</H2>
+      <H2 col="$color1">Track Water</H2>
 
       <WaterContainer
-        value={50}
+        value={water}
         maxCapacity={100}
       />
+
+      <Button
+        onPress={() => {
+          setWater(water + 30)
+        }}
+      >
+        Add Water
+      </Button>
 
       <ToastControl />
       <CurrentToast />
@@ -28,69 +46,6 @@ export default function TabOneScreen() {
         left="$5"
         right="$5"
       />
-
-      <XStack
-        ai="center"
-        fw="wrap"
-        gap="$1.5"
-        pos="absolute"
-        b="$8"
-      >
-        <Paragraph
-          fos="$5"
-          col="$color1"
-        >
-          Add
-        </Paragraph>
-
-        <Paragraph
-          fos="$5"
-          px="$2"
-          py="$1"
-          col="$blue10Light"
-          bg="$blue5Light"
-          br="$3"
-        >
-          tamagui.config.ts
-        </Paragraph>
-
-        <Paragraph
-          fos="$5"
-          col="$color1"
-        >
-          to root and follow the
-        </Paragraph>
-
-        <XStack
-          ai="center"
-          gap="$1.5"
-          px="$2"
-          py="$1"
-          br="$3"
-          bg="$purple5Light"
-          hoverStyle={{ bg: '$purple6Light' }}
-        >
-          <Anchor
-            href="https://tamagui.dev/docs/core/configuration"
-            textDecorationLine="none"
-            col="$purple10Light"
-            fos="$5"
-          >
-            Configuration guide
-          </Anchor>
-          <ExternalLink
-            size="$1"
-            col="$purple10Light"
-          />
-        </XStack>
-
-        <Paragraph
-          fos="$5"
-          col="$color1"
-        >
-          to configure your themes and tokens.
-        </Paragraph>
-      </XStack>
     </YStack>
   )
 }
