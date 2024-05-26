@@ -41,6 +41,7 @@ export default function TabTwoScreen() {
       justifyContent="center"
     >
       <Text
+        marginBottom={20}
         fontSize={20}
         color="$blue10"
       >
